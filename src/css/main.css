@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+* {
+  margin: 2px;
+  padding: 2px;
+}
+
+body {
+  background-color: rgb(68, 59, 80);
+  color: wheat;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+.header {
+  background-color: #222;
+  padding: 20px 100px;
+  font-weight: 600;
+}
+
+.container {
+  display: flex;
+}
+
+main {
+  margin: 50px 100px;
+  width: 50%;
+  padding-left: 0px;
+}
+
+aside {
+  width: 20%;
+  padding-left: 0px;
+  margin: 50px 100px;
+}
+
+.imput-form-user {
+  width: 90%;
+  padding: 15px 5%;
+  font-weight: 300;
+  margin-bottom: 10px;
+  border: 0;
+  background: #222;
+  color: white;
+  outline: none;
+  font-size: 15px;
+}
+
+textarea {
+  max-width: 90%;
+  min-width: 90%;
+  max-height: 150px;
+  min-height: 30px;
+}
+
+.user {
+  margin-bottom: 50px;
+  background-color: rgb(120, 171, 203);
+  padding: 20px;
+}
+
+.checkbox-form-user {
+  margin: 12px;
+}
+
+.button {
+  width: 100%;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+.edit-icon,
+.delete-icon {
+  float: right;
+  color: #165664;
+  cursor: pointer;
+  transform: scale(2);
+}
+
+.edit-icon {
+  margin-right: 25px;
+}
+
+.delete-icon:hover,
+.edit-icon:hover {
+  opacity: 0.5;
+}
