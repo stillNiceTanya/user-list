@@ -8,13 +8,14 @@ class AddUser extends React.Component {
       lastname: "",
       bio: "",
       age: 1,
-      isHappy: false,
+      isMarry: false,
     };
+    this.myForm = React.createRef();
   }
 
   render() {
     return (
-      <form>
+      <form ref={(el) => (this.myForm = el)}>
         <input
           className="imput-form-user"
           placeholder="firstname"
@@ -36,26 +37,27 @@ class AddUser extends React.Component {
           onChange={(e) => this.setState({ age: e.target.value })}
         ></input>
         <br />
-        <label htmlFor="isHappy">Are you happy?</label>
+        <label htmlFor="isMarry">Are you marry?</label>
         <input
           className="checkbox-form-user"
           type="checkbox"
-          id="isHappy"
-          onChange={(e) => this.setState({ isHappy: e.target.checked })}
+          id="isMarry"
+          onChange={(e) => this.setState({ isMarry: e.target.checked })}
         ></input>
         <br />
         <button
           className="imput-form-user button"
           type="button"
-          onClick={() =>
+          onClick={() => {
+            this.myForm.reset();
             this.props.onAdd({
               firstname: this.state.firstname,
               lastname: this.state.lastname,
               bio: this.state.bio,
               age: this.state.age,
-              isHappy: this.state.isHappy,
-            })
-          }
+              isMarry: this.state.isMarry,
+            });
+          }}
         >
           Submit
         </button>

@@ -13,7 +13,7 @@ class App extends React.Component {
           lastname: "Marley",
           bio: "lorem ipsum",
           age: 40,
-          isHappy: true,
+          isMarry: true,
         },
         {
           id: 2,
@@ -21,11 +21,12 @@ class App extends React.Component {
           lastname: "Monroe",
           bio: "lorem ipsum",
           age: 34,
-          isHappy: false,
+          isMarry: false,
         },
       ],
     };
     this.addUser = this.addUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
   render() {
     return (
@@ -34,7 +35,10 @@ class App extends React.Component {
         <div className="container">
           {" "}
           <main>
-            <Users users={this.state.users}></Users>
+            <Users
+              users={this.state.users}
+              onDelete={this.deleteUser}
+            ></Users>
           </main>
           <aside>
             <AddUser onAdd={this.addUser}></AddUser>
@@ -42,6 +46,12 @@ class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  deleteUser(id) {
+    this.setState({
+      users: this.state.users.filter((el) => el.id !== id),
+    });
   }
 
   addUser(user) {
