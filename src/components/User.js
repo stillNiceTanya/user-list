@@ -27,12 +27,18 @@ class User extends React.Component {
           className="edit-icon"
         ></IoHammerSharp>
 
-        <h3>{`${this.user.firstname} ${this.user.lastname}`}</h3>
-        <p>{this.user.bio}</p>
+        <h3>{`${this.user.first_name} ${this.user.last_name}`}</h3>
+        <p>{this.user.email}</p>
         <p>{this.user.age}</p>
+
         <p>{this.user.isMarry ? "В браке" : "Не в браке"}</p>
 
-        {this.state.editForm && <AddUser></AddUser>}
+        {this.state.editForm && (
+          <AddUser
+            user={this.user}
+            onAdd={this.props.onEdit}
+          ></AddUser>
+        )}
       </div>
     );
   }

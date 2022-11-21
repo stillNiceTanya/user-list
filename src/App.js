@@ -2,31 +2,23 @@ import React from "react";
 import Header from "./components/Header";
 import Users from "./components/Users";
 import AddUser from "./components/AddUser";
+import axios from "axios";
+
+const baseUrl = "https://reqres.in/api/users?page=1";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
+    axios.get(baseUrl).then((res) => {
+      this.setState({ users: res.data.data });
+    });
+
     this.state = {
-      users: [
-        {
-          id: 1,
-          firstname: "Bob",
-          lastname: "Marley",
-          bio: "lorem ipsum",
-          age: 40,
-          isMarry: true,
-        },
-        {
-          id: 2,
-          firstname: "Marilin",
-          lastname: "Monroe",
-          bio: "lorem ipsum",
-          age: 34,
-          isMarry: false,
-        },
-      ],
+      users: [],
     };
     this.addUser = this.addUser.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    this.editUser = this.editUser.bind(this);
   }
   render() {
     return (
@@ -36,6 +28,7 @@ class App extends React.Component {
           {" "}
           <main>
             <Users
+              onEdit={this.editUser}
               users={this.state.users}
               onDelete={this.deleteUser}
             ></Users>
@@ -46,6 +39,14 @@ class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  editUser(user) {
+    let allUsers = this.state.users;
+    allUsers[user.id - 1] = user;
+    this.setState({ users: [] }, () => {
+      this.setState({ users: [...allUsers] });
+    });
   }
 
   deleteUser(id) {

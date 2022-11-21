@@ -1,12 +1,14 @@
 import React from "react";
 
 class AddUser extends React.Component {
+  userAdd = {};
+
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      bio: "",
+      first_name: "",
+      last_name: "",
+      email: "",
       age: 1,
       isMarry: false,
     };
@@ -19,17 +21,17 @@ class AddUser extends React.Component {
         <input
           className="imput-form-user"
           placeholder="firstname"
-          onChange={(e) => this.setState({ firstname: e.target.value })}
+          onChange={(e) => this.setState({ first_name: e.target.value })}
         ></input>
         <input
           className="imput-form-user"
           placeholder="lastname"
-          onChange={(e) => this.setState({ lastname: e.target.value })}
+          onChange={(e) => this.setState({ last_name: e.target.value })}
         ></input>
         <textarea
           className="imput-form-user"
-          placeholder="bio"
-          onChange={(e) => this.setState({ bio: e.target.value })}
+          placeholder="email"
+          onChange={(e) => this.setState({ email: e.target.value })}
         ></textarea>
         <input
           className="imput-form-user"
@@ -50,13 +52,15 @@ class AddUser extends React.Component {
           type="button"
           onClick={() => {
             this.myForm.reset();
-            this.props.onAdd({
-              firstname: this.state.firstname,
-              lastname: this.state.lastname,
-              bio: this.state.bio,
+            this.userAdd = {
+              first_name: this.state.first_name,
+              last_name: this.state.last_name,
+              email: this.state.email,
               age: this.state.age,
               isMarry: this.state.isMarry,
-            });
+            };
+            if (this.props.user) this.userAdd.id = this.props.user.id;
+            this.props.onAdd(this.userAdd);
           }}
         >
           Submit
